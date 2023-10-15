@@ -1,13 +1,13 @@
-const WorksModel = require("../Model/worksModel");
+const WorksModel = require("../Model/WorksModel");
 
 
 //create works
 exports.createWrok = async(req,res) =>{
     try {
        let reqBody = req.body;
-       let email = req.headers.email ;
+       let email = req.headers.email ;   
        reqBody.email = email;
-       let result = await WroksModel.create(reqBody);
+       let result = await WorksModel.create(reqBody)
        res.status(201).json({"status":"success" , message:result}); 
     } catch (error) {
         res.status(400).json({"status":"Failed" , message:error});

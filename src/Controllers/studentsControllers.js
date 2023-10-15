@@ -22,7 +22,9 @@ exports.studentLogin = async (req, res) => {
   try {
     let reqBody = req.body;
     let email = reqBody.email;
+    console.log(email)
     let result = await StudentsModel.find(reqBody).count();
+    console.log(result)
     if (result === 1) {
       let payLoad = {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
@@ -42,6 +44,7 @@ exports.studentLogin = async (req, res) => {
 exports.updateStudentProfile = async (req, res) => {
   try {
     let email = req.headers.email;
+    
     let reqBody = req.body;
     let result = await StudentsModel.updateOne({ email: email }, reqBody);
     res.status(200).json({ status: "Successfully Logged In", message: result });
